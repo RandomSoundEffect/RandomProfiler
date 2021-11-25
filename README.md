@@ -54,7 +54,7 @@ For larger `it_no`, it'll be easier to see the complexity of your algorithm, sin
 void Profiler::profile(std::vector<long long>& result, Algorithm test) { ... }
 ```
 Template argument `Algorithm` is a functor that takes `TestCase` as an argument (or const reference of `TestCase`), and runs your 'algorithm'.
-It's likely that your alogrithm does not take `TestCase` directly, so `Algorithm` should be a wrapper function of your algorithm. The return value of `Alogrithm` does not matter, since it is simply ignored for profiling.  
+It's likely that your alogrithm does not take `TestCase` directly, so `Algorithm` should be a wrapper function of your algorithm. The return value of `Algorithm` does not matter, since it is simply ignored for profiling.  
 ```cpp
 // your favorite algorithm implementation for profiling...
 int algo(int* arr, int n);
