@@ -53,14 +53,14 @@ For larger `it_no`, it'll be easier to see the complexity of your algorithm, sin
 <template class Algorithm>
 void Profiler::profile(std::vector<long long>& result, Algorithm test) { ... }
 ```
-Template argument `Algorithm` is a functor that takes `TestCase` as an argument (or const reference of `TestCase`), and runs your 'algorithm'.
+Template argument `Algorithm` is a functor that takes `TestCase` as an argument (or (const) reference of `TestCase`), and runs your 'algorithm'.
 It's likely that your alogrithm does not take `TestCase` directly, so `Algorithm` should be a wrapper function of your algorithm. The return value of `Algorithm` does not matter, since it is simply ignored for profiling.  
 ```cpp
 // your favorite algorithm implementation for profiling...
 int algo(int* arr, int n);
 
 // to make your algorithm compatible with MyTestCase we implement a wrapper function
-void algo_wrapper(const MyTestCase& tc) {
+void algo_wrapper(MyTestCase& tc) {
   algo(tc.arr_for_testing, tc.N);
   delete[] tc.arr_for_testing; // you must do clean-ups in here if necessary
 }
@@ -69,7 +69,7 @@ void algo_wrapper(const MyTestCase& tc) {
 profiler.profile(result, algo_wrapper);
 
 // even better, we could use lambdas instead of declaring a wrapper in global scope
-profiler.profile(result, [](const MyTestCase& tc){
+profiler.profile(result, [](MyTestCase& tc){
   algo(tc.arr_for_testing, tc.N);
   delete[] tc.arr_for_testing;
 });
