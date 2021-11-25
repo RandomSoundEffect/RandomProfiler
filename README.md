@@ -42,8 +42,8 @@ Profiler<MyTestCase, decltype(generate)> profiler(generate);
 Profiler<MyTestCase, decltype(generate)> profiler(generate, 5, 40); // ... or this
 ```
 The second constructor sets `Profiler::smpl_sz` and `Profiler::it_no`.  
-`smpl_sz` is the number of times the algorithm is run to average elapsed time for each *iteration*. The default value is `40`.  
-`it_no` is the number of *iteration*. For each *iteration*, `TestCaseGenerator` will receive the same `iteration_argument`. The default value is `5`.  
+`smpl_sz` is the number of times the algorithm is run to average elapsed time for each *iteration*. The default value is `5`.  
+`it_no` is the number of *iteration*. For each *iteration*, `TestCaseGenerator` will receive the same `iteration_argument`. The default value is `40`.  
 Both can be resetted by setter methods: `Profiler::setSamplingSize` `Profiler::setIterationAmount`.  
 For larger `smpl_sz`, the result of the `Profiler::profile` will be more "stable", but would require more time to profile.  
 For larger `it_no`, it'll be easier to see the complexity of your algorithm, since it'll test for more `N`, but would require more time to profile.  
